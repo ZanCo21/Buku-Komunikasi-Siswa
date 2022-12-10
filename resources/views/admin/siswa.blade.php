@@ -18,8 +18,8 @@
                   <th> Nis </th>
                   <th> Alamat </th>
                   <th> No Telpon </th>
-                  {{-- <th> Password </th> --}}
-                  <th>walikelas</th>
+                  <th> walikelas </th>
+                  <th> Point </th>
                 </tr>
               </thead>
               <tbody>
@@ -36,12 +36,16 @@
                     {{-- <img src="assets/images/faces/face1.jpg" alt="image" /> --}}
                     <span class="pl-2"> {{ $item->name }} </span>
                   </td>
-                  <td> {{ $item->kelas }} </td>
+                  <td> {{ $item->kelaas->name }} </td>
                   <td> {{ $item->jurusan }} </td>
                   <td> {{ $item->nis }} </td>
                   <td> {{ $item->alamat }} </td>
                   <td> {{ $item->notelp }} </td>
-                  <td> {{ $item->gurus->name }} </td>
+                  <td> {{ $item->gurus->name }} </td>    
+                  <td> {{ $item->point }} </td>
+                  {{-- @foreach($item->kasus as $pel)
+                   <td>{{ $pel->point }}</td>
+                  @endforeach --}}
                   <td>
                     <a href="{{ url('getsiswa',$item->id)}}" class="badge badge-outline-success">Edit</a>
                     <a href="" class="badge badge-outline-warning">Detail</a>
@@ -49,6 +53,7 @@
                   </td>
                 </tr>
                 @endforeach
+
               </tbody>
             </table>
           </div>

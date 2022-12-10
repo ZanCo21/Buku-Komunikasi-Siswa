@@ -5,8 +5,8 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Data Guru</h4>
-            <a href="{{ route('formguru') }}" class="badge badge-outline-success">Add Guru</a>
+            <h4 class="card-title">Data kelas</h4>
+            <a href="" class="badge badge-outline-success">Add Kelas</a>
             {{-- <p class="card-description"> Add class  --}}
             </p>
             <div class="table-responsive">
@@ -25,20 +25,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($guru as $item)
                   <tr>
                     {{-- <td> {{ $no++ }} </td> --}}
-                    <td> {{ $item->id }} </td>
-                    <td> {{ $item->nik }} </td>
-                    <td> {{ $item->name }} </td>
-                    <td> {{ $item->mapel }} </td>
+                    <td> </td>
+                    <td> </td>
+                    <td>  </td>
+                    <td>  </td>
                     <td>
                     
                         <a href="{{ Route('getguru', $item->id) }}" class="badge badge-outline-success">Edit</a>
                         <a href="{{ Route('deleteguru', $item->id ) }}" class="badge badge-outline-danger">Delete</a>
                     </td>
                   </tr>
-                  @endforeach
                 </tbody>
               </table>
             </div>

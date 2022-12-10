@@ -21,13 +21,7 @@
 
           <div class="form-group">
             <label for="exampleSelectGender">Mata Pelajaran</label>
-            <select class="form-control" id="exampleSelectGender" name="mapel">
-              <option></option>
-              <option>PPLG</option>
-              <option>TKJ</option>
-              <option>MM</option>
-              <option>BC</option>
-            </select>
+            <input type="text" class="form-control" name="mapel" id="exampleInputName1">
           </div>
 
           <button type="submit" class="btn btn-primary mr-2">Submit</button>

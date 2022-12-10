@@ -15,11 +15,11 @@
           </div>
           <div class="form-group">
             <label for="exampleInputName1">Kelas</label>
-            <select class="form-control" id="exampleSelectGender" name="kelas">
-              <option value="{{ $getsiswa->kelas }}"></option>
-              <option>X</option>
-              <option>XI</option>
-              <option>XII</option>
+            <select class="form-control" id="exampleSelectGender" name="kelas_id">
+              <option>{{ $getsiswa->kelaas->name }}</option>
+              @foreach ($kelas as $item)
+                  <option value="{{ $item->id }}">{{ $item->name }}</option>
+              @endforeach
             </select>
           </div>
           <div class="form-group">

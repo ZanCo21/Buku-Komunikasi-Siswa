@@ -17,4 +17,8 @@ class Pelanggaran extends Model
         'point',
         'sanksi',
     ];
+    public function siswass()
+    {
+        return $this->belongsToMany(Siswa::class, 'kasus', 'siswa_id', 'pelanggaran_id');
+    }
 }

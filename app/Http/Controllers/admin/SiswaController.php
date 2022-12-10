@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
+use App\Models\Kasus;
+use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,7 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $siswa = Siswa::with('gurus')->paginate(10);
+        $siswa = Siswa::with('gurus','kelaas','kasus')->get();
         return view('admin.siswa', compact('siswa') );
     }   
 
@@ -19,7 +21,9 @@ class SiswaController extends Controller
     {
         $walikelas = Guru::all();
 
-        return view('admin.add_siswa', compact('walikelas'));
+        $kelas = Kelas::all();
+
+        return view('admin.add_siswa', compact('walikelas','kelas'));
     }
 
     public function store(Request $request)
@@ -31,7 +35,8 @@ class SiswaController extends Controller
         $postProduk = new Siswa;
         $postProduk->name = $request->name;
         $postProduk->image = $namaFile;
-        $postProduk->kelas = $request->kelas;
+        $postProduk->kelas_id = $request->kelas_id;
+        $postProduk->point = $request->point;
         $postProduk->jurusan = $request->jurusan;
         $postProduk->nis = $request->nis;
         $postProduk->jeniskelamin = $request->jeniskelamin;
@@ -50,10 +55,11 @@ class SiswaController extends Controller
     public function getsiswa($id)
     {
         $walikelas = Guru::all();
+        $kelas = Kelas::all();
 
-        $getsiswa = Siswa::with('gurus')->find($id);
+        $getsiswa = Siswa::with('gurus','kelaas')->find($id);
 
-        return view('admin.edit_siswa', compact('getsiswa', 'walikelas'));
+        return view('admin.edit_siswa', compact('getsiswa', 'walikelas', 'kelas'));
     }
 
     public function delete($id)
@@ -70,5 +76,10 @@ class SiswaController extends Controller
         $editsiswa->update($request->all());
 
         return redirect()->route('siswa')->with('success','Student deleted successfully');
+    }
+
+    public function halamandua(){
+        $laporan = Kasus::with('siswwaa','kasuss','kelas')->get();
+        return view('halaman.dashboard', compact('laporan'));
     }
 }

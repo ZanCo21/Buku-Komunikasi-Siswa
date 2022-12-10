@@ -16,11 +16,11 @@
 
           <div class="form-group">
             <label for="exampleInputName1">Kelas</label>
-            <select class="form-control" id="exampleSelectGender" name="kelas">
-              <option value="" disabled></option>
-              <option>X</option>
-              <option>XI</option>
-              <option>XII</option>
+            <select class="form-control" id="exampleSelectGender" name="kelas_id">
+              <option disabled></option>
+              @foreach ($kelas as $item)
+              <option value="{{ $item->id }}">{{ $item->name }}</option>
+              @endforeach
             </select>
           </div>
 
@@ -88,6 +88,11 @@
           <div class="form-group">
             <label for="exampleInputName1">Password</label>
             <input type="password" class="form-control" id="exampleInputName1" placeholder="" name="password">
+          </div>
+
+          <div class="form-group" hidden>
+            <label for="exampleInputName1">point</label>
+            <input type="number" value="0" class="form-control" id="exampleInputName1" placeholder="" name="point">
           </div>
 
           <button type="submit" class="btn btn-primary mr-2">Submit</button>

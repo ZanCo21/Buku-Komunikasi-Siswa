@@ -17,15 +17,18 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->string('kelas');
             $table->string('jurusan');
             $table->integer('nis');
             $table->string('jeniskelamin');
             $table->string('alamat');
             $table->integer('notelp');
+            $table->integer('point');
             $table->string('email');
             $table->string('password');
 
+            $table->unsignedBigInteger('kelas_id');
+ 
+            $table->foreign('kelas_id')->references('id')->on('kelas');
 
             $table->unsignedBigInteger('walikelas_id');
  

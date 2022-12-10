@@ -57,13 +57,18 @@ Route::get('/deletepelanggaran/{id}', [PelanggaranController::class, 'delete'])-
 
 // kasus
 Route::get('/addkasus', [KasusController::class, 'index'])->name('formkasus');
+Route::get('/kasussiswa', [KasusController::class, 'kasussiswa']);
+Route::get('/getpelanggar', [KasusController::class, 'getpelanggar']);
+Route::post('/add-datapelanggaran', [KasusController::class, 'store'])->name('addpelanggaran');
 
+// kelas
+Route::get('/kelas', [PelanggaranController::class, 'index'])->name('kelas');
 
 
 // hak akses
 Route::group(['middleware' => ['auth','ceklevel:admin']], function() {
 
-    Route::get('/dashboard',[BerandaController::class, 'halamandua']);
+    Route::get('/dashboard',[SiswaController::class, 'halamandua']);
     route::get('/halamansatu','BerandaController@halamansatu')->name('halamansatu');
 });
 

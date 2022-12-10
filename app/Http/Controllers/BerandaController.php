@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kasus;
+use App\Models\kelas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class BerandaController extends Controller
@@ -15,7 +18,4 @@ class BerandaController extends Controller
         return view('halaman.index');
     }
 
-    public function halamandua(){
-        return view('halaman.dashboard');
-    }
 }
