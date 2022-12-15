@@ -4,10 +4,10 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card mt-4">
       <div class="card-body">
-        <h4 class="card-title">Basic form elements</h4>
-        <p class="card-description"> Basic form elements </p>
+        <h4 class="card-title">Edit Siswa</h4>
+        <p class="card-description"> Edit Siswa </p>
         
-        <form class="forms-sample" action="{{ route('editsiswa', $getsiswa->id) }}" method="post">
+        <form class="forms-sample" action="{{ route('editsiswa', $getsiswa->id) }}" method="post" enctype="multipart/form-data">
             @csrf
           <div class="form-group">
             <label for="exampleInputName1">Name</label>
@@ -16,7 +16,7 @@
           <div class="form-group">
             <label for="exampleInputName1">Kelas</label>
             <select class="form-control" id="exampleSelectGender" name="kelas_id">
-              <option>{{ $getsiswa->kelaas->name }}</option>
+              <option disabled></option>
               @foreach ($kelas as $item)
                   <option value="{{ $item->id }}">{{ $item->name }}</option>
               @endforeach
@@ -48,6 +48,17 @@
             </select>
           </div>
 
+          <div class="form-group">
+            <label>File upload</label>
+            <input type="file" name="image" class="file-upload-default">
+            <div class="input-group col-xs-12">
+              <input type="file" class="form-control file-upload-info" name="image" placeholder="Upload Image">
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+              </span>
+            </div>
+          </div>
+          
           <div class="form-group">
             <label for="exampleInputName1">Alamat</label>
             <input type="text" value="{{ $getsiswa->alamat }}"  class="form-control" id="exampleInputName1" placeholder="Name" name="alamat">

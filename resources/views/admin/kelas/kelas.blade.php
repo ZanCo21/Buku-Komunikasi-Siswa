@@ -6,7 +6,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Data kelas</h4>
-            <a href="" class="badge badge-outline-success">Add Kelas</a>
+            <a href="{{ route('formkelas') }}" class="badge badge-outline-success">Add Kelas</a>
             {{-- <p class="card-description"> Add class  --}}
             </p>
             <div class="table-responsive">
@@ -18,26 +18,27 @@
                   <tr>
                     {{-- <th> No </th> --}}
                     <th> Id </th>
-                    <th> Nik </th>
                     <th> Name </th>
-                    <th> Mata Pelajaran </th>
-                    <th>Action</th>
+                    <th> Created </th>
+                    <th> Update </th>
+                    <th> Action </th>
                   </tr>
                 </thead>
+                @foreach ($kelas as $item)
                 <tbody>
                   <tr>
                     {{-- <td> {{ $no++ }} </td> --}}
-                    <td> </td>
-                    <td> </td>
-                    <td>  </td>
-                    <td>  </td>
+                    <td> {{ $item->id }} </td>
+                    <td> {{ $item->name }} </td>
+                    <td> {{ $item->created_at }} </td>
+                    <td> {{ $item->updated_at }} </td>
                     <td>
-                    
-                        <a href="{{ Route('getguru', $item->id) }}" class="badge badge-outline-success">Edit</a>
-                        <a href="{{ Route('deleteguru', $item->id ) }}" class="badge badge-outline-danger">Delete</a>
+                        <a href="{{ url('getkelas', $item->id) }}" class="badge badge-outline-success">Edit</a>
+                        <a href="/deletekelas/{{ $item->id }}" class="badge badge-outline-danger">Delete</a>
                     </td>
                   </tr>
                 </tbody>
+                @endforeach
               </table>
             </div>
           </div>

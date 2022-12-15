@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use App\Models\Kasus;
 use App\Models\Kelas;
+use App\Models\Pelanggaran;
 use App\Models\Siswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -73,13 +75,55 @@ class SiswaController extends Controller
     public function editsiswa(Request $request ,$id)
     {
         $editsiswa = Siswa::find($id);
-        $editsiswa->update($request->all());
+        $awal = $editsiswa->image;
+
+        $dt = [
+            'name' => $request['name'],
+            'kelas_id' => $request['kelas_id'],
+            'jurusan' => $request['jurusan'],
+            'nis' => $request['nis'],
+            'jeniskelamin' => $request['jeniskelamin'],
+            'image' => $awal,
+            'alamat' => $request['alamat'],
+            'notelp' => $request['notelp'],
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'walikelas_id' => $request['walikelas_id'],
+
+        ];
+
+        // if ($request->hasfile('image')) {
+            $request->image->move(public_path().'/profilsiswa', $awal);
+        // }
+        $editsiswa->update($dt);
 
         return redirect()->route('siswa')->with('success','Student deleted successfully');
     }
 
     public function halamandua(){
+        $kasus = Kasus::count();
+        $siswas = Siswa::count();
+        $pelanggaran = Pelanggaran::count();
+        $guru = Guru::count();
         $laporan = Kasus::with('siswwaa','kasuss','kelas')->get();
-        return view('halaman.dashboard', compact('laporan'));
+        return view('halaman.dashboard', compact('laporan', 'kasus','siswas','pelanggaran','guru'));
+    }
+
+    public function detailsiswa($id)
+    {
+        $detaisiswa = Siswa::with('gurus','kelaas')->find($id);
+
+        $detailpoint = Kasus::with('kasuss','siswwaa')->where('siswa_id', $id)->get();
+        
+        return view('admin.detail_siswa', compact('detaisiswa', 'detailpoint'));
+    }
+
+    public function deleteKasus($id)
+    {
+        $deletekasus = Kasus::find($id);
+
+        $deletekasus->delete();
+
+        return redirect()->route('dashboard')->with('success','Student deleted successfully');
     }
 }

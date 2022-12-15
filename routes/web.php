@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\admin\GuruController;
 use App\Http\Controllers\admin\KasusController;
+use App\Http\Controllers\admin\KelasController;
 use App\Http\Controllers\admin\PelanggaranController;
 use App\Http\Controllers\admin\SiswaController;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LoginController;
+use App\Models\Kasus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +32,9 @@ Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
 Route::post('/postsiswa', [SiswaController::class, 'store'])->name('postsiswa');
 Route::get('/deletesiswa/{id}', [SiswaController::class, 'delete'])->name('delete');
 Route::get('/formsiswa', [SiswaController::class, 'formsiswa'])->name('addsiswa');
+// detail-siswa
+Route::get('/detailsiswa/{id}', [SiswaController::class, 'detailsiswa'])->name('detailsiswa');
+
 // siswa--edit
 Route::get('/getsiswa/{id}', [SiswaController::class, 'getsiswa'])->name('getsiswa');
 Route::post('/editsiswa/{id}', [SiswaController::class, 'editsiswa'])->name('editsiswa');
@@ -60,9 +65,21 @@ Route::get('/addkasus', [KasusController::class, 'index'])->name('formkasus');
 Route::get('/kasussiswa', [KasusController::class, 'kasussiswa']);
 Route::get('/getpelanggar', [KasusController::class, 'getpelanggar']);
 Route::post('/add-datapelanggaran', [KasusController::class, 'store'])->name('addpelanggaran');
+// delete kasus
+Route::get('/deletekasus/{id}', [SiswaController::class, 'deleteKasus'])->name('deletekasus');
+// edit kasus
+Route::get('/getkasus/{id}', [KasusController::class, 'getkasus'])->name('getkasus');
+
+
 
 // kelas
-Route::get('/kelas', [PelanggaranController::class, 'index'])->name('kelas');
+Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
+Route::get('/formkelas', [KelasController::class, 'formkelas'])->name('formkelas');
+Route::get('/addkelas', [KelasController::class, 'store'])->name('addkelas');
+Route::get('/deletekelas/{id}', [KasusController::class, 'delete'])->name('deletekelas');
+// edit
+Route::get('/getkelas/{id}', [KelasController::class, 'getkelas'])->name('getkelas');
+Route::post('/postkelas/{id}', [KelasController::class, 'postkelas'])->name('postkelas');
 
 
 // hak akses

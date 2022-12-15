@@ -17,9 +17,10 @@
                   <th> Jurusan </th>
                   <th> Nis </th>
                   <th> Alamat </th>
-                  <th> No Telpon </th>
                   <th> walikelas </th>
                   <th> Point </th>
+                  <th> progress Bar Point  </th>
+                  <th> Action </th>
                 </tr>
               </thead>
               <tbody>
@@ -40,15 +41,28 @@
                   <td> {{ $item->jurusan }} </td>
                   <td> {{ $item->nis }} </td>
                   <td> {{ $item->alamat }} </td>
-                  <td> {{ $item->notelp }} </td>
                   <td> {{ $item->gurus->name }} </td>    
-                  <td> {{ $item->point }} </td>
-                  {{-- @foreach($item->kasus as $pel)
-                   <td>{{ $pel->point }}</td>
-                  @endforeach --}}
+                  <td>
+                    @php
+                        $total = 0;
+                    @endphp
+                    @foreach($item->kasus as $pel)
+                    {{-- by fauzan alghifari --}}
+                    <input type="hidden" name="" value="{{ $pel->point }}">
+                      @php
+                          $total += $pel->point
+                      @endphp
+                    @endforeach
+                    <p>{{ $total }}</p>
+                  </td>
+                  <td>
+                    <div class="progress">
+                      <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $total }}%" aria-valuenow="{{ $total }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </td>
                   <td>
                     <a href="{{ url('getsiswa',$item->id)}}" class="badge badge-outline-success">Edit</a>
-                    <a href="" class="badge badge-outline-warning">Detail</a>
+                    <a href="{{ url('detailsiswa',$item->id)}}" class="badge badge-outline-warning">Detail</a>
                     <a href="/deletesiswa/{{ $item->id }}" class="badge badge-outline-danger">Delete</a>
                   </td>
                 </tr>

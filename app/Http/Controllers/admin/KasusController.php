@@ -42,4 +42,11 @@ class KasusController extends Controller
         return redirect('dashboard');
 
     }
+
+    // public function getkasus($id)
+    // {
+    //     $getkasus = Kasus::find($id);
+
+    //     return view('admin.kasus.edit_kasus', compact('getkasus'));   
+    // }
 }

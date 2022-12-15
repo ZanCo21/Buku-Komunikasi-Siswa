@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class GuruSeeder extends Seeder
 {
@@ -15,10 +16,18 @@ class GuruSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('guru')->insert([
-            ['nama' => 'Alex'],
-            ['nik' => '11293'],
-            ['mapel' => 'PPLG'],
+        $faker = Faker::create('id_ID');
+
+
+        for($i=1; $i <=10; $i++){
+            DB::table('guru')->insert([
+            'name' => $faker->name,
+            'nik' => $faker->numberBetween(1000,2000),
+            'mapel' => $faker->jobTitle,
         ]);
+
+        }
+
+
     }
 }

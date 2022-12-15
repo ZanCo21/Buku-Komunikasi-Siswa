@@ -12,7 +12,7 @@
                 </span>
               <div class="d-flex align-items-center align-self-start">
                 <i class="mdi mdi-people text-primary me-4"></i>
-                <h3 class="mb-0"> 340</h3>
+                <h3 class="mb-0"> {{ $siswas }} </h3>
                 <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
               </div>
             </div>
@@ -35,7 +35,7 @@
                     <i class="mdi mdi-account-multiple"></i>
                 </span>
               <div class="d-flex align-items-center align-self-start">
-                <h3 class="mb-0">17</h3>
+                <h3 class="mb-0">{{ $kasus }}</h3>
                 <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
               </div>
             </div>
@@ -45,7 +45,7 @@
               </div>
             </div>
           </div>
-          <h6 class="text-muted font-weight-normal">Pelanggar</h6>
+          <h6 class="text-muted font-weight-normal">kasus</h6>
         </div>
       </div>
     </div>
@@ -58,13 +58,13 @@
                     <i class="mdi mdi-account-multiple"></i>
                 </span>
               <div class="d-flex align-items-center align-self-start">
-                <h3 class="mb-0">12</h3>
-                <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
+                <h3 class="mb-0">{{ $guru }}</h3>
+                <p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
               </div>
             </div>
             <div class="col-3">
-              <div class="icon icon-box-danger">
-                <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+              <div class="icon icon-box-success">
+                <span class="mdi mdi-arrow-top-right icon-item"></span>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@
                     <i class="mdi mdi-account-multiple"></i>
                 </span>
               <div class="d-flex align-items-center align-self-start">
-                <h3 class="mb-0">53</h3>
+                <h3 class="mb-0">{{ $pelanggaran }}</h3>
                 <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
               </div>
             </div>
@@ -135,8 +135,8 @@
                @endforeach
                <td>{{$l->created_at}}</td>
                <td>
-               <a href="{{ Route('getguru', $item->id) }}" class="badge badge-outline-success">Edit</a>
-               <a href="{{ Route('deleteguru', $item->id ) }}" class="badge badge-outline-danger">Delete</a>
+               {{-- <a href="{{ Route('getguru', $l->id) }}" class="badge badge-outline-success">Edit</a> --}}
+               <a href="{{ Route('deletekasus', $l->id ) }}" class="badge badge-outline-danger">Delete</a>
                </td>
             </tbody>
             @endforeach
